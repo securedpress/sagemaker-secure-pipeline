@@ -1,0 +1,30 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfplan
+.terraform.lock.hcl
+terraform.tfvars
+
+# Python
+__pycache__/
+*.py[cod]
+.env
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Data — never commit real training data
+data/*.csv
+data/*.parquet
+!data/.gitkeep
+
+# macOS
+.DS_Store
+
+# AWS credentials — never commit these
+*.pem
+credentials

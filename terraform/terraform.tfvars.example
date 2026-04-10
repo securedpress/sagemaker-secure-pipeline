@@ -1,0 +1,5 @@
+aws_region                    = "us-east-1"
+prefix                        = "sagemaker-secure-pipeline"
+owner_tag                     = "your-name-here"
+autopilot_max_runtime_seconds = 14400
+endpoint_instance_type        = "ml.m5.xlarge"
