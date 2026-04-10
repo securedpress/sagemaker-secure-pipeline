@@ -5,8 +5,8 @@ Run via: make run
 
 import boto3
 import subprocess
-import json
 from datetime import datetime
+
 
 def get_terraform_output(key):
     result = subprocess.run(
@@ -14,15 +14,16 @@ def get_terraform_output(key):
         cwd="terraform",
         capture_output=True,
         text=True,
-        check=True
+        check=True,
     )
     return result.stdout.strip()
 
+
 def main():
-    pipeline_name   = get_terraform_output("pipeline_name")
+    pipeline_name = get_terraform_output("pipeline_name")
     training_bucket = get_terraform_output("training_bucket")
     artifacts_bucket = get_terraform_output("artifacts_bucket")
-    execution_role  = get_terraform_output("execution_role_arn")
+    execution_role = get_terraform_output("execution_role_arn")
 
     client = boto3.client("sagemaker")
 
@@ -32,10 +33,10 @@ def main():
         PipelineName=pipeline_name,
         PipelineExecutionDisplayName=f"run-{datetime.now().strftime('%Y%m%d-%H%M%S')}",
         PipelineParameters=[
-            {"Name": "TrainingBucket",  "Value": training_bucket},
+            {"Name": "TrainingBucket", "Value": training_bucket},
             {"Name": "ArtifactsBucket", "Value": artifacts_bucket},
-            {"Name": "ExecutionRole",   "Value": execution_role},
-        ]
+            {"Name": "ExecutionRole", "Value": execution_role},
+        ],
     )
 
     execution_arn = response["PipelineExecutionArn"]
@@ -47,6 +48,7 @@ def main():
     print("Autopilot will run up to 4 hours. Once complete, approve the model")
     print("in the SageMaker Model Registry then run:")
     print("  make endpoint")
+
 
 if __name__ == "__main__":
     main()

@@ -25,8 +25,8 @@ resource "aws_sagemaker_notebook_instance" "demo" {
   role_arn      = var.execution_role_arn
 
   # VPC placement — remediates SEC-022
-  subnet_id              = var.subnet_id
-  security_groups        = [var.security_group_id]
+  subnet_id       = var.subnet_id
+  security_groups = [var.security_group_id]
 
   # KMS encryption — remediates SEC-020
   kms_key_id = var.kms_key_arn

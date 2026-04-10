@@ -65,11 +65,11 @@ resource "aws_vpc_endpoint" "s3" {
 # control plane calls never leave the AWS network
 
 resource "aws_vpc_endpoint" "sagemaker_api" {
-  vpc_id              = aws_vpc.main.id
-  service_name        = "com.amazonaws.${data.aws_region.current.name}.sagemaker.api"
-  vpc_endpoint_type   = "Interface"
-  subnet_ids          = [aws_subnet.private.id]
-  security_group_ids  = [aws_security_group.sagemaker.id]
+  vpc_id             = aws_vpc.main.id
+  service_name       = "com.amazonaws.${data.aws_region.current.name}.sagemaker.api"
+  vpc_endpoint_type  = "Interface"
+  subnet_ids         = [aws_subnet.private.id]
+  security_group_ids = [aws_security_group.sagemaker.id]
 
   private_dns_enabled = true
 
@@ -81,11 +81,11 @@ resource "aws_vpc_endpoint" "sagemaker_api" {
 # --- SageMaker runtime interface endpoint ---
 
 resource "aws_vpc_endpoint" "sagemaker_runtime" {
-  vpc_id              = aws_vpc.main.id
-  service_name        = "com.amazonaws.${data.aws_region.current.name}.sagemaker.runtime"
-  vpc_endpoint_type   = "Interface"
-  subnet_ids          = [aws_subnet.private.id]
-  security_group_ids  = [aws_security_group.sagemaker.id]
+  vpc_id             = aws_vpc.main.id
+  service_name       = "com.amazonaws.${data.aws_region.current.name}.sagemaker.runtime"
+  vpc_endpoint_type  = "Interface"
+  subnet_ids         = [aws_subnet.private.id]
+  security_group_ids = [aws_security_group.sagemaker.id]
 
   private_dns_enabled = true
 

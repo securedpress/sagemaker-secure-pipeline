@@ -33,11 +33,11 @@ module "kms" {
 }
 
 module "iam" {
-  source              = "./modules/iam"
-  prefix              = var.prefix
-  training_bucket_arn = module.s3.training_bucket_arn
+  source               = "./modules/iam"
+  prefix               = var.prefix
+  training_bucket_arn  = module.s3.training_bucket_arn
   artifacts_bucket_arn = module.s3.artifacts_bucket_arn
-  kms_key_arn         = module.kms.key_arn
+  kms_key_arn          = module.kms.key_arn
 }
 
 module "s3" {

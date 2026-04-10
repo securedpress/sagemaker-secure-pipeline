@@ -17,7 +17,7 @@ resource "aws_sagemaker_model" "demo" {
 }
 
 resource "aws_sagemaker_endpoint_configuration" "demo" {
-  name       = "${var.prefix}-endpoint-config"
+  name        = "${var.prefix}-endpoint-config"
   kms_key_arn = var.kms_key_arn
 
   production_variants {
