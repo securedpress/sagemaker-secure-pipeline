@@ -41,21 +41,21 @@ module "iam" {
 }
 
 module "s3" {
-  source              = "./modules/s3"
-  prefix              = var.prefix
-  kms_key_arn         = module.kms.key_arn
-  vpc_endpoint_id     = module.vpc.s3_endpoint_id
+  source          = "./modules/s3"
+  prefix          = var.prefix
+  kms_key_arn     = module.kms.key_arn
+  vpc_endpoint_id = module.vpc.s3_endpoint_id
 }
 
 module "sagemaker" {
-  source                       = "./modules/sagemaker"
-  prefix                       = var.prefix
-  execution_role_arn           = module.iam.execution_role_arn
-  subnet_id                    = module.vpc.private_subnet_id
-  security_group_id            = module.vpc.sagemaker_sg_id
-  kms_key_arn                  = module.kms.key_arn
-  training_bucket              = module.s3.training_bucket_name
-  artifacts_bucket             = module.s3.artifacts_bucket_name
+  source                        = "./modules/sagemaker"
+  prefix                        = var.prefix
+  execution_role_arn            = module.iam.execution_role_arn
+  subnet_id                     = module.vpc.private_subnet_id
+  security_group_id             = module.vpc.sagemaker_sg_id
+  kms_key_arn                   = module.kms.key_arn
+  training_bucket               = module.s3.training_bucket_name
+  artifacts_bucket              = module.s3.artifacts_bucket_name
   autopilot_max_runtime_seconds = var.autopilot_max_runtime_seconds
 }
 
