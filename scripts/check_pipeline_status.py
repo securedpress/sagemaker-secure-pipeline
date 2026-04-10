@@ -6,15 +6,17 @@ Run via: make status
 import boto3
 import subprocess
 
+
 def get_terraform_output(key):
     result = subprocess.run(
         ["terraform", "output", "-raw", key],
         cwd="terraform",
         capture_output=True,
         text=True,
-        check=True
+        check=True,
     )
     return result.stdout.strip()
+
 
 def main():
     pipeline_name = get_terraform_output("pipeline_name")
@@ -23,7 +25,7 @@ def main():
     executions = client.list_pipeline_executions(
         PipelineName=pipeline_name,
         SortOrder="Descending",
-        MaxResults=1
+        MaxResults=1,
     )["PipelineExecutionSummaries"]
 
     if not executions:
@@ -47,10 +49,10 @@ def main():
     print("-" * 70)
 
     for step in steps:
-        name     = step.get("StepName", "—")
+        name = step.get("StepName", "—")
         s_status = step.get("StepStatus", "—")
-        start    = step.get("StartTime")
-        end      = step.get("EndTime")
+        start = step.get("StartTime")
+        end = step.get("EndTime")
 
         if start and end:
             duration = str(end - start).split(".")[0]
@@ -70,6 +72,7 @@ def main():
         print("Pipeline failed. Check the FailStep logs in CloudWatch for the rejection reason.")
     elif status == "Executing":
         print("Pipeline is still running. Re-run 'make status' to check progress.")
+
 
 if __name__ == "__main__":
     main()
