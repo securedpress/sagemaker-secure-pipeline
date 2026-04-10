@@ -178,7 +178,6 @@ XGBoost result: **~2.1 RMSE**
 ## Related repos
 
 - [sagemaker-autopilot-demo](https://github.com/securedpress/sagemaker-autopilot-demo) — the before: same pipeline without the hardening layer
-- [aws-mlops-demo](https://github.com/securedpress/aws-mlops-demo) — intentional misconfigurations for audit scanner demos
 
 ---
 
