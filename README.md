@@ -50,11 +50,6 @@ Deploys a fully isolated, encrypted, governance-enforced SageMaker environment w
 
 Both notebooks use the same hardened infrastructure — same Terraform, same VPC, same KMS key, same IAM role. The only difference is the model and dataset.
 
-### Which notebook to start with
-
-**New to SageMaker Pipelines?** Start with `02_xgboost_abalone.ipynb`. It runs in ~10 minutes and walks through every pipeline stage — ProcessingStep, TrainingStep, QualityCheckStep, ConditionStep, ModelStep, and FailStep — without waiting hours for Autopilot.
-
-**Demoing to a client or recording a YouTube video?** Use `01_secure_pipeline.ipynb`. The fintech credit risk dataset has a concrete business outcome ($44K/month in recovered losses) that resonates with financial services, lending, and payments audiences.
 
 ---
 
